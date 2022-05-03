@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merkletree</title>
+<script src="https://cdn.jsdelivr.net/npm/keccak256@latest/keccak256.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/merkletreejs@latest/merkletree.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    const addresses = ["0x1C62f0Ccf370A3dF1A665600ea836AB4Cf8398F2","0xC3527DFAEa92fd4100A10EeC41B61D84D20007C7","0xdF3e18d64BC6A983f673Ab319CCaE4f1a57C7097","0x22D31DEB23bC1c7afCE2D2E35dC7D84c069086dD",]
+const leaves = addresses.map(x => keccak256(x))
+const tree = new MerkleTree(leaves, keccak256, { sortPairs: true })
+const buf2hex = x => '0x' + x.toString('hex')
+console.log(buf2hex(tree.getRoot()))
+</script>
+</body>
+</html>
